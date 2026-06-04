@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Reaction Reactor</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="page-glow page-glow-a"></div>
+    <div class="page-glow page-glow-b"></div>
+
+    <main class="app-shell">
+      <section id="home-screen" class="home-screen">
+        <header class="home-hero">
+          <div class="home-copy">
+            <p class="eyebrow">Chemistry Review Game</p>
+            <h1>Reaction Reactor</h1>
+            <p class="hero-copy">
+              Train fast formula recall with an endless chemistry challenge.
+              Type compounds quickly, protect your streak, and chase a new high
+              score.
+            </p>
+            <div class="hero-actions">
+              <button id="home-start-button" class="button button-primary">
+                Start Endless Run
+              </button>
+              <button id="home-leaderboard-button" class="button button-secondary">
+                Open Leaderboard
+              </button>
+              <button id="home-rules-button" class="button button-secondary">
+                Rules &amp; Components
+              </button>
+            </div>
+          </div>
+          <aside class="home-spotlight">
+            <p class="panel-kicker">Lab Snapshot</p>
+            <div class="home-score-card">
+              <span class="stat-label">Saved High Score</span>
+              <strong id="home-high-score" class="home-high-score">0</strong>
+            </div>
+            <div class="home-badges">
+              <span class="home-badge">30 compounds</span>
+              <span class="home-badge">Typing mode</span>
+              <span class="home-badge">Endless run</span>
+            </div>
+          </aside>
+        </header>
+
+        <section class="home-grid">
+          <article class="panel home-card">
+            <p class="panel-kicker">How It Works</p>
+            <h3>Fast Review Loop</h3>
+            <p>
+              Read the clue, type the correct formula, and submit before the
+              short timer runs out.
+            </p>
+          </article>
+          <article class="panel home-card">
+            <p class="panel-kicker">Game Goal</p>
+            <h3>Survive The Lab</h3>
+            <p>
+              The run ends after 3 mistakes, so every correct answer builds your
+              score and streak.
+            </p>
+          </article>
+          <article class="panel home-card">
+            <p class="panel-kicker">Study Focus</p>
+            <h3>Real Formula Practice</h3>
+            <p>
+              Review acids, oxides, salts, nitrates, gases, and common class
+              compounds in one place.
+            </p>
+          </article>
+        </section>
+      </section>
+
+      <section id="game-screen" class="game-screen hidden">
+        <header class="hero">
+          <div>
+            <p class="eyebrow">Chemistry Review Game</p>
+            <h1>Reaction Reactor</h1>
+            <p class="hero-copy">
+              Type the right compound formula before the short timer expires. Endless
+              chemistry missions keep coming until you make 3 mistakes.
+            </p>
+          </div>
+          <div class="hero-actions">
+            <button id="start-button" class="button button-primary">
+              Start Endless Run
+            </button>
+            <button id="leaderboard-open-button" class="button button-secondary">
+              Leaderboard
+            </button>
+            <button id="home-button" class="button button-secondary">
+              Home
+            </button>
+            <button id="rules-button" class="button button-secondary">
+              Rules &amp; Components
+            </button>
+          </div>
+        </header>
+
+        <section class="dashboard" aria-label="Game dashboard">
+        <article class="stat-card">
+          <span class="stat-label">Score</span>
+          <strong id="score" class="stat-value">0</strong>
+        </article>
+        <article class="stat-card">
+          <span class="stat-label">High Score</span>
+          <strong id="high-score" class="stat-value">0</strong>
+        </article>
+        <article class="stat-card">
+          <span class="stat-label">Round</span>
+          <strong id="round" class="stat-value">0</strong>
+        </article>
+        <article class="stat-card">
+          <span class="stat-label">Mistakes Left</span>
+          <strong id="lives" class="stat-value">3</strong>
+        </article>
+        <article class="stat-card">
+          <span class="stat-label">Streak</span>
+          <strong id="streak" class="stat-value">0</strong>
+        </article>
+        <article class="stat-card">
+          <span class="stat-label">Hints</span>
+          <strong id="hints" class="stat-value">3</strong>
+        </article>
+        </section>
+
+        <section class="board">
+        <article class="panel mission-panel">
+          <div class="panel-header">
+            <p class="panel-kicker">Current Mission</p>
+            <span id="difficulty-badge" class="badge">Waiting</span>
+          </div>
+          <h2 id="compound-name">Press Start</h2>
+          <p id="compound-clue" class="mission-clue">
+            Each mission describes a compound and you type its formula before
+            time runs out.
+          </p>
+          <div class="mission-details">
+            <div>
+              <span class="detail-label">Atoms Needed</span>
+              <strong id="atoms-needed">0</strong>
+            </div>
+            <div>
+              <span class="detail-label">Timer</span>
+              <strong id="timer-text">0s</strong>
+            </div>
+          </div>
+          <div class="timer-track" aria-hidden="true">
+            <div id="timer-fill" class="timer-fill"></div>
+          </div>
+          <div class="formula-preview">
+            <span class="detail-label">Answer Preview</span>
+            <strong id="formula-preview">Empty</strong>
+          </div>
+        </article>
+
+        <article class="panel reactor-panel">
+          <div class="panel-header">
+            <p class="panel-kicker">Formula Entry</p>
+            <button id="clear-button" class="text-button">Clear Answer</button>
+          </div>
+          <label for="formula-input" class="input-label">
+            Type the chemical formula
+          </label>
+          <input
+            id="formula-input"
+            class="formula-input"
+            type="text"
+            autocomplete="off"
+            autocapitalize="off"
+            spellcheck="false"
+            inputmode="text"
+            placeholder="Examples: H2O, NaCl, CaCO3"
+          />
+          <p class="input-help">
+            Type element symbols and numbers directly. Spaces are ignored.
+          </p>
+          <div class="reactor-actions">
+            <button id="submit-button" class="button button-primary">
+              Launch Reaction
+            </button>
+            <button id="hint-button" class="button button-secondary">
+              Use Catalyst Hint
+            </button>
+          </div>
+          <p id="feedback" class="feedback neutral">
+            Type a compound formula, then launch the reaction.
+          </p>
+        </article>
+        </section>
+
+        <section class="panel shelf-panel">
+        <div class="panel-header">
+          <div>
+            <p class="panel-kicker">Typing Tips</p>
+            <h3>Formula Formatting</h3>
+          </div>
+          <p class="shelf-note">
+            Type the answer directly using chemical notation.
+          </p>
+        </div>
+        <div class="tips-grid">
+          <article class="tip-card">
+            <strong>Correct style</strong>
+            <span>Use symbols like `Na`, `Cl`, `Mg`, and `Ca`.</span>
+          </article>
+          <article class="tip-card">
+            <strong>Add numbers when needed</strong>
+            <span>Examples: `H2O`, `CO2`, `CaCl2`, `H2SO4`.</span>
+          </article>
+          <article class="tip-card">
+            <strong>Keep it simple</strong>
+            <span>Uppercase and lowercase both work. Spaces are ignored.</span>
+          </article>
+        </div>
+        </section>
+
+        <section class="panel log-panel">
+        <div class="panel-header">
+          <div>
+            <p class="panel-kicker">Run Data</p>
+            <h3>History</h3>
+          </div>
+          <div class="tab-strip" role="tablist" aria-label="History tabs">
+            <button
+              id="mission-log-tab"
+              class="panel-tab active"
+              type="button"
+              role="tab"
+              aria-selected="true"
+            >
+              Mission Log
+            </button>
+            <button
+              id="leaderboard-tab"
+              class="panel-tab"
+              type="button"
+              role="tab"
+              aria-selected="false"
+            >
+              Leaderboard
+            </button>
+          </div>
+        </div>
+        <div id="mission-log-panel" class="tab-panel">
+          <ul id="mission-log" class="mission-log"></ul>
+        </div>
+        <div id="leaderboard-panel" class="tab-panel hidden">
+          <div class="leaderboard-summary">
+            <span class="stat-label">Saved High Score</span>
+            <strong id="leaderboard-high-score" class="leaderboard-score">0</strong>
+            <span class="leaderboard-note">Top endless runs saved in this browser.</span>
+          </div>
+          <ol id="leaderboard-list" class="leaderboard-list"></ol>
+          <p id="leaderboard-empty" class="leaderboard-empty">
+            Finish a run to add your first leaderboard score.
+          </p>
+        </div>
+        </section>
+      </section>
+    </main>
+
+    <div id="rules-modal" class="modal hidden" role="dialog" aria-modal="true">
+      <div class="modal-card">
+        <button id="close-rules" class="modal-close" aria-label="Close rules">
+          Close
+        </button>
+        <p class="eyebrow">Rules &amp; Components</p>
+        <h2>What You Turn In</h2>
+        <div class="rules-grid">
+          <section>
+            <h3>Original Components</h3>
+            <ul>
+              <li>30 custom chemistry mission cards with clues and timers</li>
+              <li>A typed formula entry console with live answer preview</li>
+              <li>A formula formatting guide with built-in examples</li>
+              <li>A 3-mistake loss system, score system, streak bonus, and hints</li>
+            </ul>
+          </section>
+          <section>
+            <h3>How To Play</h3>
+            <ul>
+              <li>Start with 3 mistakes available and 3 catalyst hints.</li>
+              <li>Read the mission clue and type the compound formula.</li>
+              <li>Submit before the short timer ends to score points.</li>
+              <li>Wrong submissions or timeouts count as mistakes.</li>
+              <li>The game is endless and ends when you reach 3 mistakes.</li>
+            </ul>
+          </section>
+        </div>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
