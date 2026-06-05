@@ -130,7 +130,7 @@ const MISSIONS = [
     recipe: { C: 1, O: 1 },
   },
   {
-    name: "Nitric Oxide",
+    name: "Nitric Monoxide",
     formula: "NO",
     clue: "This compound contains one nitrogen atom and one oxygen atom.",
     difficulty: "Core",
